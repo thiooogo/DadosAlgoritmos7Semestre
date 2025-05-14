@@ -1,0 +1,6 @@
+Nome: Bala | Idade: 24 | RG: 54574 | Entrada: 22/12/2018
+Nome: Lenda | Idade: 45 | RG: 78445 | Entrada: 08/11/2023
+Nome: Thiago | Idade: 21 | RG: 12345 | Entrada: 13/05/2025
+Nome: Toca | Idade: 33 | RG: 23435 | Entrada: 12/11/2011
+Nome: Carol | Idade: 14 | RG: 34675 | Entrada: 21/03/2015
+Nome: Lucas | Idade: 13 | RG: 98345 | Entrada: 05/04/2020
