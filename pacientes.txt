@@ -1,10 +1,10 @@
-Nome: Bala | Idade: 24 | RG: 545.740.000-0 | Entrada: 22/12/2018
-Nome: Lenda | Idade: 45 | RG: 784.450.000-0 | Entrada: 08/11/2023
-Nome: Thiago | Idade: 21 | RG: 123.450.000-0 | Entrada: 13/05/2025
-Nome: Toca | Idade: 33 | RG: 234.350.000-0 | Entrada: 12/11/2011
-Nome: Carol | Idade: 14 | RG: 346.750.000-0 | Entrada: 21/03/2015
-Nome: Lucas | Idade: 13 | RG: 983.450.000-0 | Entrada: 05/04/2020
-Nome: Marlon | Idade: 25 | RG: 983.451.000-0 | Entrada: 12/06/2021
+Nome: Bala | Idade: 24 | RG: 545.740.459-1 | Entrada: 22/12/2018
+Nome: Lenda | Idade: 45 | RG: 784.450.332-4 | Entrada: 08/11/2023
+Nome: Thiago | Idade: 21 | RG: 123.450.673-2 | Entrada: 13/05/2025
+Nome: Toca | Idade: 33 | RG: 234.350.111-3 | Entrada: 12/11/2011
+Nome: Carol | Idade: 14 | RG: 346.750.659-4 | Entrada: 21/03/2015
+Nome: Lucas | Idade: 13 | RG: 983.450.443-8 | Entrada: 05/04/2020
+Nome: Marlon | Idade: 25 | RG: 983.451.999-1 | Entrada: 12/06/2021
 Nome: Sofia | Idade: 29 | RG: 657.890.123-4 | Entrada: 10/10/2017
 Nome: Igor | Idade: 38 | RG: 312.678.945-2 | Entrada: 03/02/2010
 Nome: Helena | Idade: 19 | RG: 890.123.456-7 | Entrada: 27/08/2022
