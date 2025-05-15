@@ -106,6 +106,7 @@ typedef struct {
 // ------------------------------------
 
 // Inicializa a lista
+// Função para inicializar a lista
 Lista *inicializa_lista() {
     Lista *l = malloc(sizeof(Lista));
     l->inicio = NULL;
@@ -114,6 +115,7 @@ Lista *inicializa_lista() {
 }
 
 // Cria uma nova data
+// Função para criar uma nova data
 Data *cria_data(int dia, int mes, int ano) {
     Data *d = malloc(sizeof(Data));
     d->dia = dia;
@@ -123,6 +125,7 @@ Data *cria_data(int dia, int mes, int ano) {
 }
 
 // Insere novo paciente no início da lista
+// Função para inserir um novo paciente no início da lista
 void cadastrar_paciente(Lista *l, Registro paciente) {
     ELista *novo = malloc(sizeof(ELista));
     novo->dados = malloc(sizeof(Registro)); 
@@ -134,6 +137,7 @@ void cadastrar_paciente(Lista *l, Registro paciente) {
 
 
 // Imprime todos os pacientes da lista
+// Função para imprimir todos os pacientes da lista
 void imprimir_lista(const Lista *l) {
     ELista *atual = l->inicio;
     while (atual != NULL) {
@@ -146,6 +150,7 @@ void imprimir_lista(const Lista *l) {
 
 
 // Consulta paciente específico
+// Função para consultar um paciente específico
 ELista* consultar_paciente(const Lista *l, const char *nome) {
     ELista *atual = l->inicio;
     while (atual != NULL) {
@@ -158,6 +163,7 @@ ELista* consultar_paciente(const Lista *l, const char *nome) {
 }
 
 // Atualiza dados do paciente
+// Função para atualizar os dados de um paciente
 void atualizar_paciente(Lista *l) {
     char nome_busca[100];
     printf("✏️ Digite o nome do paciente que deseja atualizar: ");
@@ -213,6 +219,7 @@ void atualizar_paciente(Lista *l) {
 }
 
 // Remove Paciente
+// Função para remover um paciente da lista
 void remover_paciente(Lista *l, const char *nome) {
     ELista *atual = l->inicio;
     ELista *anterior = NULL;
@@ -246,6 +253,7 @@ void remover_paciente(Lista *l, const char *nome) {
 // FUNÇÕES DE ITEM DE MENU: DESFAZER
 // ----------------------------------
 
+// Função para iniciar uma célula da pilha
 Cell *start_cell(char valor) {
   Cell *nova = malloc(sizeof(Cell));
   nova->anterior = NULL;
@@ -255,6 +263,7 @@ Cell *start_cell(char valor) {
   return nova;
 }
 
+// Função para iniciar a pilha
 Stack *start_stack() {
   Stack *stack = malloc(sizeof(Stack));
   stack->qtde = 0;
@@ -262,6 +271,7 @@ Stack *start_stack() {
   return stack;
 }
 
+// Função para empilhar uma operação na pilha
 void push(Stack *stack, char operacao, Registro *paciente) {
     Cell *nova = malloc(sizeof(Cell));
     nova->operacao = operacao;
@@ -276,6 +286,7 @@ void push(Stack *stack, char operacao, Registro *paciente) {
 }
 
 
+// Função para desempilhar a última operação da pilha
 Cell *pop(Stack *stack) {
     if (stack->qtde == 0) return NULL;
     Cell *removida = stack->top;
@@ -286,6 +297,7 @@ Cell *pop(Stack *stack) {
 }
 
 
+// Função para imprimir todas as operações da pilha
 void imprimir_stack(Stack *stack) {
     printf("\n📜 Log de operações:\n");
     Cell *atual = stack->top;
@@ -305,6 +317,7 @@ void imprimir_stack(Stack *stack) {
 
 
 
+// Função para desfazer a última operação realizada
 void desfazer_ultima_operacao(Stack *stack, Fila *fila) {
     Cell *ultima = pop(stack);
     if (ultima == NULL) {
@@ -349,6 +362,7 @@ void desfazer_ultima_operacao(Stack *stack, Fila *fila) {
 // -------------------------------------
 
 // Inicializa a fila
+// Função para inicializar a fila
 Fila *inicializa_fila() {
     Fila *f = malloc(sizeof(Fila));
     f->head = NULL;
@@ -359,6 +373,7 @@ Fila *inicializa_fila() {
 
 
 // Enfileirar paciente
+// Função para enfileirar um paciente na fila de atendimento
 void enfileirar_paciente(Lista *lista, Fila *fila, Stack *stack) {
     char nome_busca[100];
     printf("🔍 Digite o nome do paciente a ser enfileirado: ");
@@ -395,6 +410,7 @@ void enfileirar_paciente(Lista *lista, Fila *fila, Stack *stack) {
 }
 
 // Desenfileira paciente
+// Função para desenfileirar um paciente da fila de atendimento
 void desenfileirar_paciente(Fila *fila, Stack *stack) {
     if (fila->qtde == 0) {
         printf("⚠️ Nenhum paciente na fila de atendimento.\n");
@@ -414,6 +430,7 @@ void desenfileirar_paciente(Fila *fila, Stack *stack) {
 
 
 // Mostra todos os pacientes na fila de atendimento
+// Função para mostrar todos os pacientes na fila de atendimento
 void mostrar_fila(const Fila *fila) {
     if (fila->qtde == 0) {
         printf("📭 A fila está vazia.\n");
@@ -435,18 +452,22 @@ void mostrar_fila(const Fila *fila) {
 // -------------------------------------------------
 // FUNÇÕES DE ITEM DE MENU: ATENDIMENTO PRIORITÁRIO
 // -------------------------------------------------
+// Função para obter o índice do filho esquerdo de um nó na heap
 int filho_esquerda(int pai) {
     return (2 * pai) + 1;
 }
 
+// Função para obter o índice do filho direito de um nó na heap
 int filho_direita(int pai) {
     return (2 * pai) + 2;
 }
 
+// Função para obter o índice do pai de um nó na heap
 int pai(int filho) {
     return (filho - 1) / 2;
 }
 
+// Função para peneirar a heap e manter a propriedade de heap
 void peneirar(Heap *h, int pai) {
     int maior = pai;
     int fe = filho_esquerda(pai);
@@ -468,12 +489,14 @@ void peneirar(Heap *h, int pai) {
     }
 }
 
+// Função para construir a heap a partir de um array
 void construir(Heap *h) {
     for (int i = (h->qtde / 2) - 1; i >= 0; i--) {
         peneirar(h, i);
     }
 }
 
+// Função para inicializar a heap
 void inicializar_heap(Heap *h) {
     h->qtde = 0;
     for (int i = 0; i < MAX_HEAP; i++) {
@@ -481,6 +504,7 @@ void inicializar_heap(Heap *h) {
     }
 }
 
+// Função para inserir um paciente na heap
 void inserir_heap(Heap *h, Registro *paciente) {
     if (h->qtde >= MAX_HEAP) {
         printf("❌ Heap cheia. Capacidade máxima atingida.\n");
@@ -491,6 +515,7 @@ void inserir_heap(Heap *h, Registro *paciente) {
     construir(h);
 }
 
+// Função para remover o paciente prioritário da heap
 void remover_heap(Heap *h) {
     if (h->qtde == 0) {
         printf("⚠️ Heap vazia.\n");
@@ -503,6 +528,7 @@ void remover_heap(Heap *h) {
     construir(h);
 }
 
+// Função para mostrar todos os pacientes na fila prioritária
 void mostrar_heap(const Heap *h) {
     if (h->qtde == 0) {
         printf("📭 Nenhum paciente na fila prioritária.\n");
@@ -536,6 +562,7 @@ void mostrar_heap(const Heap *h) {
 // FUNÇÕES DE ITEM DE MENU - PESQUISAR
 // ------------------------------------
 
+// Função para criar uma árvore binária de busca (ABB)
 ABB *cria_abb() {
     ABB *arvore = malloc(sizeof(ABB));
     arvore->raiz = NULL;
@@ -543,6 +570,7 @@ ABB *cria_abb() {
     return arvore;
 }
 
+// Função para criar um vértice da árvore binária de busca (ABB)
 EABB *cria_vertice(Registro paciente) {
     EABB *novo = malloc(sizeof(EABB));
     novo->dados = malloc(sizeof(Registro));
@@ -553,6 +581,7 @@ EABB *cria_vertice(Registro paciente) {
 }
 
 
+// Função para inserir um paciente na árvore binária de busca (ABB)
 void inserir_abb(ABB *arvore, Registro paciente, int (*criterio)(Registro, Registro)) {
     EABB *novo = cria_vertice(paciente);
 
@@ -578,6 +607,7 @@ void inserir_abb(ABB *arvore, Registro paciente, int (*criterio)(Registro, Regis
     arvore->qtde++;
 }
 
+// Função para imprimir os pacientes da árvore binária de busca (ABB) em ordem
 void imprimir_in_ordem(EABB *raiz) {
     if (raiz != NULL) {
         imprimir_in_ordem(raiz->filhoEsq);
@@ -587,22 +617,27 @@ void imprimir_in_ordem(EABB *raiz) {
     }
 }
 
+// Função para comparar pacientes pelo ano de entrada
 int comparar_por_ano(Registro a, Registro b) {
     return a.entrada->ano - b.entrada->ano;
 }
 
+// Função para comparar pacientes pelo mês de entrada
 int comparar_por_mes(Registro a, Registro b) {
     return a.entrada->mes - b.entrada->mes;
 }
 
+// Função para comparar pacientes pelo dia de entrada
 int comparar_por_dia(Registro a, Registro b) {
     return a.entrada->dia - b.entrada->dia;
 }
 
+// Função para comparar pacientes pela idade
 int comparar_por_idade(Registro a, Registro b) {
     return a.idade - b.idade;
 }
 
+// Função para reconstruir a árvore binária de busca (ABB) com base em um critério
 void reconstruir_abb(Lista *lista, ABB *arvore, int (*criterio)(Registro, Registro)) {
     ELista *atual = lista->inicio;
     while (atual != NULL) {
@@ -616,6 +651,7 @@ void reconstruir_abb(Lista *lista, ABB *arvore, int (*criterio)(Registro, Regist
 // FUNÇÕES DE ITEM DE MENU: CARREGAR/SALVAR
 // -----------------------------------------
 
+// Função para salvar a lista de pacientes em um arquivo
 void salvar_lista(Lista *lista, const char *nome_arquivo) {
     FILE *arquivo = fopen(nome_arquivo, "w");
     if (!arquivo) {
@@ -638,6 +674,7 @@ void salvar_lista(Lista *lista, const char *nome_arquivo) {
 
 
 
+// Função para carregar a lista de pacientes de um arquivo
 void carregar_lista(Lista *lista, const char *nome_arquivo) {
     FILE *arquivo = fopen(nome_arquivo, "r");
     if (!arquivo) {
@@ -678,6 +715,7 @@ void carregar_lista(Lista *lista, const char *nome_arquivo) {
 // -------------------------------
 // FUNÇÕES DO ITEM DE MENU: SOBRE
 // -------------------------------
+// Função para mostrar informações sobre o projeto
 void mostrar_sobre() {
     printf("\n📘 SOBRE O PROJETO\n");
     printf("----------------------------------------\n");
@@ -702,6 +740,7 @@ void mostrar_sobre() {
 // ------------------------
 // FUNÇÃO PRINCIPAL - MAIN
 // ------------------------
+// Função principal (main) do programa
 int main() {
     Lista* lista = inicializa_lista();
     Fila *fila = inicializa_fila();
@@ -923,7 +962,7 @@ int main() {
                     printf("❌  Opção inválida. Tente novamente.\n");
                 }
         
-                free(arvore); // Libera a estrutura da árvore (você pode melhorar isso liberando os nós também)
+                free(arvore); // Libera a estrutura da árvore
             }
         }
 
