@@ -509,13 +509,28 @@ void mostrar_heap(const Heap *h) {
         return;
     }
 
-    printf("📋 Fila de atendimento prioritário:\n");
+    // Cópia da heap original
+    Heap copia;
+    copia.qtde = h->qtde;
     for (int i = 0; i < h->qtde; i++) {
-        Registro *p = h->dados[i];
+        copia.dados[i] = h->dados[i];
+    }
+
+    printf("📋 Fila de atendimento prioritário (por idade):\n");
+    int pos = 1;
+    while (copia.qtde > 0) {
+        Registro *p = copia.dados[0];
         printf("%d️⃣  Nome: %s | Idade: %d | RG: %s | Entrada: %02d/%02d/%04d\n",
-               i + 1, p->nome, p->idade, p->rg, p->entrada->dia, p->entrada->mes, p->entrada->ano);
+               pos++, p->nome, p->idade, p->rg,
+               p->entrada->dia, p->entrada->mes, p->entrada->ano);
+
+        // Substitui o topo pelo último e reconstroi a heap
+        copia.dados[0] = copia.dados[copia.qtde - 1];
+        copia.qtde--;
+        construir(&copia);
     }
 }
+
 
 // ------------------------------------
 // FUNÇÕES DE ITEM DE MENU - PESQUISAR
